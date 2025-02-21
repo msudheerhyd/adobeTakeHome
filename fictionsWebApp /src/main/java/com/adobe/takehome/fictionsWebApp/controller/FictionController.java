@@ -1,48 +1,60 @@
 package com.adobe.takehome.fictionsWebApp.controller;
 
 import com.adobe.takehome.fictionsWebApp.model.Fiction;
+import com.adobe.takehome.fictionsWebApp.ratelimit.RateLimited;
 import com.adobe.takehome.fictionsWebApp.service.FictionService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/fictions")
 public class FictionController {
 
+    private static final Logger logger = LoggerFactory.getLogger(FictionController.class);
+
     @Autowired
     private FictionService fictionService;
 
     @GetMapping("/all")
-    public List<Fiction> getAllFictions() {
-        return fictionService.getAllFictions();
+    @RateLimited
+    public ResponseEntity<List<Fiction>> getAllFictions() {
+        List<Fiction> fictions = fictionService.getAllFictions();
+        return ResponseEntity.ok(fictions);
     }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_USER')")
-    public Fiction getFictionById(@PathVariable Long id) {
-        return fictionService.getFictionById(id)
-                .orElseThrow(() -> new RuntimeException("Fiction not found"));
+    public ResponseEntity<Optional<Fiction>> getFictionById(@PathVariable Long id) {
+        Optional<Fiction> fiction = fictionService.getFictionById(id);
+        return ResponseEntity.ok(fiction);
     }
 
     @PostMapping
     @PreAuthorize("hasAuthority('ROLE_USER')")
-    public Fiction createFiction(@RequestBody Fiction fiction) {
-        return fictionService.createFiction(fiction);
+    @RateLimited
+    public ResponseEntity<Fiction> createFiction(@RequestBody Fiction fiction) {
+        Fiction createdFiction = fictionService.createFiction(fiction);
+        return ResponseEntity.ok(createdFiction);
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_USER')")
-    public Fiction updateFiction(@PathVariable Long id, @RequestBody Fiction fictionDetails) {
-        return fictionService.updateFiction(id, fictionDetails);
+    public ResponseEntity<Fiction> updateFiction(@PathVariable Long id, @RequestBody Fiction fictionDetails) {
+        Fiction updatedFiction = fictionService.updateFiction(fictionDetails.getId(), fictionDetails);
+        return ResponseEntity.ok(updatedFiction);
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public void deleteFiction(@PathVariable Long id) {
+    public ResponseEntity<String> deleteFiction(@PathVariable Long id) {
         fictionService.deleteFiction(id);
+        return ResponseEntity.ok("Successfully delete fiction with id = " + id);
     }
-
 }
