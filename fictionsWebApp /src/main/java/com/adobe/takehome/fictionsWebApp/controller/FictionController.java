@@ -3,6 +3,7 @@ package com.adobe.takehome.fictionsWebApp.controller;
 import com.adobe.takehome.fictionsWebApp.model.Fiction;
 import com.adobe.takehome.fictionsWebApp.service.FictionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,28 +15,32 @@ public class FictionController {
     @Autowired
     private FictionService fictionService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Fiction> getAllFictions() {
         return fictionService.getAllFictions();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public Fiction getFictionById(@PathVariable Long id) {
         return fictionService.getFictionById(id)
                 .orElseThrow(() -> new RuntimeException("Fiction not found"));
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public Fiction createFiction(@RequestBody Fiction fiction) {
         return fictionService.createFiction(fiction);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public Fiction updateFiction(@PathVariable Long id, @RequestBody Fiction fictionDetails) {
         return fictionService.updateFiction(id, fictionDetails);
     }
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void deleteFiction(@PathVariable Long id) {
         fictionService.deleteFiction(id);
     }
