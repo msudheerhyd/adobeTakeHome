@@ -30,7 +30,6 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-
         return new UserInfoUserDetailsService();
     }
 
@@ -44,8 +43,8 @@ public class SecurityConfig {
                 ).sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 

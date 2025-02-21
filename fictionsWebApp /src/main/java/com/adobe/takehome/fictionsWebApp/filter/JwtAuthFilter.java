@@ -1,5 +1,7 @@
 package com.adobe.takehome.fictionsWebApp.filter;
 
+import com.adobe.takehome.fictionsWebApp.config.UserInfoUserDetailsService;
+import com.adobe.takehome.fictionsWebApp.model.UserInfo;
 import com.adobe.takehome.fictionsWebApp.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -23,7 +25,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private JwtService jwtService;
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserInfoUserDetailsService userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

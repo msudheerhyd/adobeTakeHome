@@ -21,22 +21,25 @@ public class FictionController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public Fiction getFictionById(@PathVariable Long id) {
         return fictionService.getFictionById(id)
                 .orElseThrow(() -> new RuntimeException("Fiction not found"));
     }
 
-    @PostMapping("/create")
+    @PostMapping
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public Fiction createFiction(@RequestBody Fiction fiction) {
         return fictionService.createFiction(fiction);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public Fiction updateFiction(@PathVariable Long id, @RequestBody Fiction fictionDetails) {
         return fictionService.updateFiction(id, fictionDetails);
     }
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void deleteFiction(@PathVariable Long id) {
         fictionService.deleteFiction(id);
