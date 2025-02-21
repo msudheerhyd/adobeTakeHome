@@ -7,9 +7,10 @@ Deployed on AWS EC2
 
 root url = http://3.145.168.228/
 
-## Entity - Fiction 
-		-title
-		-author
+## Entity 
+	 Fiction 
+	  -title
+	  -author
 
 ## Roles 
 	-ROLE_USER
@@ -29,8 +30,10 @@ root url = http://3.145.168.228/
 	DELETE /{id} 	String			ROLE_ADMIN	http://3.145.168.228/fictions/1		No
 	
 Need to create a user with role as ROLE_USER or ROLE_ADMIN first
+
 Authenticate the user with username and password and get the token
-Attach the token to the authorized above requests
+
+Attach the token as the bearer in auth to access the authorized above requests
 
 RateLimiting is 5 requests per 30 seconds
 
