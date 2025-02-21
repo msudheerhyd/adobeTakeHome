@@ -15,9 +15,8 @@ public class UserService {
     @Autowired
     private PasswordEncoder encoder;
 
-    public String addUser(UserInfo userInfo) {
+    public UserInfo addUser(UserInfo userInfo) {
         userInfo.setPassword(encoder.encode(userInfo.getPassword()));
-        userInfoRepository.save(userInfo);
-        return "user added to db";
+        return userInfoRepository.save(userInfo);
     }
 }
