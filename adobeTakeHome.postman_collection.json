@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "c602b333-8345-4591-a06c-0eed23a6daa1",
+		"name": "adobe",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21569486"
+	},
+	"item": [
+		{
+			"name": "add_admin",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin\",\n    \"roles\": \"ROLE_ADMIN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.145.168.228/users/add",
+					"protocol": "http",
+					"host": [
+						"3",
+						"145",
+						"168",
+						"228"
+					],
+					"path": [
+						"users",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_fiction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdWRoZWVyIiwiaWF0IjoxNzQwMTcxNDEwLCJleHAiOjE3NDAxNzMyMTB9.hwxG1-Z74mbqwHELbZdcf5fM6EVtsxbDAOezZHkbOz8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"Superman\",\n    \"author\" : \"John Doe\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.145.168.228/fictions/122",
+					"protocol": "http",
+					"host": [
+						"3",
+						"145",
+						"168",
+						"228"
+					],
+					"path": [
+						"fictions",
+						"122"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_fiction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdWRoZWVyIiwiaWF0IjoxNzQwMTc0NDUwLCJleHAiOjE3NDAxNzYyNTB9.nPkRkjRKPpJfKkg9WaKdirrZze7iRns2IobuNQdAxuk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"StarWars\",\n    \"author\" : \"John\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.145.168.228/fictions",
+					"protocol": "http",
+					"host": [
+						"3",
+						"145",
+						"168",
+						"228"
+					],
+					"path": [
+						"fictions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_fiction_by_id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdWRoZWVyIiwiaWF0IjoxNzQwMTc0NDUwLCJleHAiOjE3NDAxNzYyNTB9.nPkRkjRKPpJfKkg9WaKdirrZze7iRns2IobuNQdAxuk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://3.145.168.228/fictions/1",
+					"protocol": "http",
+					"host": [
+						"3",
+						"145",
+						"168",
+						"228"
+					],
+					"path": [
+						"fictions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_all_fictions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://3.145.168.228/fictions/all",
+					"protocol": "http",
+					"host": [
+						"3",
+						"145",
+						"168",
+						"228"
+					],
+					"path": [
+						"fictions",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_fiction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdWRoZWVyIiwiaWF0IjoxNzQwMTc0NDUwLCJleHAiOjE3NDAxNzYyNTB9.nPkRkjRKPpJfKkg9WaKdirrZze7iRns2IobuNQdAxuk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://3.145.168.228/fictions/1",
+					"protocol": "http",
+					"host": [
+						"3",
+						"145",
+						"168",
+						"228"
+					],
+					"path": [
+						"fictions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authenticate_user",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"sudheer\",\n    \"password\": \"kumar\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.145.168.228/users/authenticate",
+					"protocol": "http",
+					"host": [
+						"3",
+						"145",
+						"168",
+						"228"
+					],
+					"path": [
+						"users",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

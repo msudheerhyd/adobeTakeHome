@@ -7,11 +7,11 @@ Deployed on AWS EC2
 
 root url = http://3.145.168.228/
 
-Fiction 
-	-title
-	-author
+## Entity - Fiction 
+		-title
+		-author
 
-Roles 
+## Roles 
 	-ROLE_USER
 	-ROLE_ADMIN
 
@@ -35,19 +35,3 @@ Attach the token to the authorized above requests
 RateLimiting is 5 requests per 30 seconds
 
 Attached the postman collection consisting of the requests
-
-```
-```
-
-## Usage
-
-```
-```
-
-## Contributing
-
-PRs accepted.
-
-## License
-
-MIT © Richard McRichface
