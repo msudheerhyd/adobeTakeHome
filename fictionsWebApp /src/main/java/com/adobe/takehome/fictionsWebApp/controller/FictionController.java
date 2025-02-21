@@ -26,8 +26,7 @@ public class FictionController {
                 .orElseThrow(() -> new RuntimeException("Fiction not found"));
     }
 
-    @PostMapping
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PostMapping("/create")
     public Fiction createFiction(@RequestBody Fiction fiction) {
         return fictionService.createFiction(fiction);
     }
